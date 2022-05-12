@@ -3,20 +3,28 @@
 // vB4B4VgeYV6UNHy1p
 
 function contact(event) {
-    event.preventDefault()
-    // await emailjs
-    //     .sendForm(
-    //         'service_9p4liia',
-    //         'template_92jerbe',
-    //         event.target,
-    //         'vB4B4VgeYV6UNHy1p'
-    //     ).then(() => {
-    //         console.log('this worked1')
-    //     })
+    event.preventDefault();
     const loading = document.querySelector('.modal__overlay--loading')
     const success = document.querySelector('.modal__overlay--success')
-    
-    setTimeout(() => {
-        console.log('it worked 1')
-    }, 500)
+    loading.classList += " modal__overlay--visible"
+    emailjs
+        .sendForm(
+            'service_9p4liia',
+            'template_92jerbe',
+            event.target,
+            'vB4B4VgeYV6UNHy1p'
+        ).then(() => {
+            loading.classList.remove("modal__overlay--visible")
+            success.classList += " modal__overlay--visible";
+        }).catch(() => {
+            loading.classList.remove("modal__overlay--visible")
+            alert(
+                "The email service is temporarily unavailable. Please contact me directly on dollentej0107@gmail.com"
+            );
+
+        })
+}
+
+function toggleModal() {
+    // toggle modal
 }
